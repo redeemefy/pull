@@ -1,15 +1,15 @@
 export interface Event {
   $key?: string;
-  host_name?: string;
-  host_id?: string;
-  event_name?: string;
-  event_id?: string;
-  street_address?: string;
+  hostName?: string;
+  hostId?: string;
+  eventName?: string;
+  eventId?: string;
+  streetAddress?: string;
   city?: string;
   state?: string;
   zipcode?: string;
-  date?: string;
-  start_time?: string;
-  end_time?: string;
+  eventDate?: string;
+  startTime?: string;
+  endTime?: string;
   applicants?: object;
 }

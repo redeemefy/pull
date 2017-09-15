@@ -1,15 +1,64 @@
 <div class="row justify-content-center" *ngFor="let event of events">
-  <div class="col-4">
+  <div class="col-6">
     <div class="card">
       <div class="card-body">
         <div class="card-title">
-          <h5>{{event.host_name}}</h5>
+          <div>
+            <small class="text-muted d-block">Volunteer for...</small> <h4>{{event.event_name}}</h4>
+          </div>
+          <!-- <img src={{event.host_img}} alt="" class="rounded-circle mr-2">
+          <h5 class="d-inline">{{event.host_name}}</h5> -->
         </div>
         <hr>
         <div class="card-text">
-          {{event.short_description}}
+          <small class="text-muted d-block"> Hosted by...</small>
+          <img src={{event.host_img}} alt="" class="rounded-circle mr-2" style="height: 50px">
+          <p class="d-inline">{{event.host_name}}</p>
+          <br><br>
+          <!-- <div>
+            <p class="font-weight-bold d-inline">Date: </p>
+            <p class="d-inline text-muted">{{event.date | date}}</p>
+            <p class="font-weight-bold d-inline">Start Time: </p>
+            <p class="d-inline text-muted">{{event.start_time}}</p>
+            <p class="font-weight-bold d-inline">End Time: </p>
+            <p class="d-inline text-muted">{{event.end_time}}</p>
+
+          </div> -->
+          <div class="row">
+            <div class="col-4">
+              <h5 class="text-muted font-italic">Date</h5>
+            </div>
+            <div class="col-4">
+              <h5 class="text-muted font-italic">Start Time</h5>
+            </div>
+            <div class="col-4">
+              <h5 class="text-muted font-italic">End Time</h5>
+            </div>
+            <div class="col-4">
+              <p>{{event.date | date}}</p>
+            </div>
+            <div class="col-4">
+              <p>{{event.start_time}}</p>
+            </div>
+            <div class="col-4">
+              <p>{{event.end_time}}</p>
+            </div>
+          </div><hr class="mt-0">
+          <div>
+            <h5 class="text-muted">What is about</h5>
+            <p>{{event.description}}</p>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <h5 class="text-muted">Location</h5>
+              <p class="mb-0">{{event.street_address}}</p>
+              <p>{{event.city}} {{event.state}}, {{event.zipcode}}</p>
+            </div>
+          </div>
         </div>
         <hr>
+        <i class="fa fa-comments d-inline-flex mr-2 event-card-icon" aria-hidden="true"></i>
+        <i class="fa fa-handshake-o d-inline-flex mr-2 event-card-icon" aria-hidden="true"></i>
 
       </div>
     </div>

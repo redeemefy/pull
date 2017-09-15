@@ -1,0 +1,22 @@
+<div class="row justify-content-center">
+    <div class="col-6">
+      <div class="card">
+        <!-- <div class="card-header">
+        </div> -->
+        <div class="card-body">
+            <h2 class="text-center">Edit Profile</h2><hr>
+          <form novalidate #f="ngForm" (ngSubmit)="updateProfile(f)">
+            <div class="form-group">
+              <label for="full_name">Full Name</label>
+              <input type="text" class="form-control" [(ngModel)]="full_name" name="full_name" #userFullName="ngModel" required>
+            </div>
+            <div class="form-group">
+              <label for="about_me">About Me</label>
+              <textarea type="about_me" class="form-control" [(ngModel)]="about_me" name="about_me" #userAboutMe="ngModel"></textarea>
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" value="Submit">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

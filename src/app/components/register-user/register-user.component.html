@@ -1,3 +1,22 @@
-<p>
-  register-user works!
-</p>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div class="card">
+      <!-- <div class="card-header">
+      </div> -->
+      <div class="card-body">
+          <h2 class="text-center">Register User</h2><hr>
+        <form novalidate #f="ngForm" (ngSubmit)="registerUser(f)">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" [(ngModel)]="email" name="email" #userEmail="ngModel" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="password" name="password" #userPassword="ngModel">
+          </div>
+          <input type="submit" class="btn btn-primary btn-block" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

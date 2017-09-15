@@ -1,3 +1,71 @@
-<p>
-  add-event works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <h3>Add Event</h3>
+  </div>
+  <div class="card-body">
+    <form novalidate #f="ngForm" (ngSubmit)="submitNewEvent(f)">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="event_name">Event Name</label>
+            <input type="text" class="form-control" [(ngModel)]="event.event_name" name="event_name" #eventName="ngModel" required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" [(ngModel)]="date" name="date" #eventDate="ngModel" required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="start_time">Start Time</label>
+            <input type="text" class="form-control" [(ngModel)]="start_time" name="start_time" #eventStartTime="ngModel" required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="end_time">End Time</label>
+            <input type="text" class="form-control" [(ngModel)]="end_time" name="end_time" #eventEndTime="ngModel" required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="street_address">Street Address</label>
+            <input type="text" class="form-control" [(ngModel)]="street_address" name="street_address" #eventStreetAddress="ngModel"
+              required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" [(ngModel)]="city" name="city" #eventCity="ngModel"
+              required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" class="form-control" [(ngModel)]="state" name="state" #eventState="ngModel"
+              required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="zipcode">Zipcode</label>
+            <input type="text" class="form-control" [(ngModel)]="zipcode" name="zipcode" #eventZipcode="ngModel"
+              required>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" class="form-control" [(ngModel)]="description" name="description" #eventDescription="ngModel"
+              required></textarea>
+          </div>
+        </div>
+      </div>
+      <input type="submit" class="btn btn-primary btn-block" value="Submit">
+    </form>
+  </div>
+</div>
