@@ -1,41 +1,41 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { FirebaseApp } from 'angularfire2';
 import { Observable } from 'rxjs';
 import { User } from '../models/User';
 
 @Injectable()
 export class UserService {
-  users: FirebaseListObservable<User[]>;
-  user: FirebaseObjectObservable<User>;
+  users: FirebaseListObservable<any[]>;
+  user: FirebaseObjectObservable<any>;
   // userKey: string;
   id: string;
 
-  constructor(private _af: AngularFireDatabase, private _fbApp: FirebaseApp) {
-    this.users = this._af.list('/users');
+  constructor(private _af: AngularFireDatabase) {
+    this.users = this._af.list('/users') as FirebaseListObservable<User[]>;
   }
 
   addUserProfile(user) {
-    let userKey = this._fbApp.database().ref('/users').push().key;
-    user.uid = userKey;
-    this._fbApp.database().ref('/users').child(userKey).set(user);
+    return this.users.push(user);
   }
 
-  createUserProfileOnRegister(user) {
-    let userKey = this._fbApp.database().ref('/users').push().key;
-    user.uid = userKey;
-    this._fbApp.database().ref('/users').child(userKey).set(user);
+  getUserByAuthKey(id) {
+    return this._af.list('/users/', {
+      query: {
+        orderByChild: 'authKey',
+        equalTo: id
+      }
+    })
   }
 
-  getUser(id) {
-    this.user = this._af.object('/users/'+id) as FirebaseObjectObservable<User>;
+  getUserProfile(id) {
+    this.user = this._af.object(`/users/${id}`) as FirebaseObjectObservable<User>;
     return this.user;
   }
 
-  // getUserByAuthKey(key) {
-  //   this.user = this._af.object('/users'+key);
-  //   return this.user;
-  // }
+  getUserId(id) {
+    this.user = this._af.object('/users' + id) as FirebaseObjectObservable<User>;
+    return this.user;
+  }
 
   updateUserProfile(id, user) {
     return this.users.update(id, user);

@@ -23,9 +23,9 @@
           <a routerLink="register" class="nav-link"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a>
         </li>
         <li class="nav-item" *ngIf="isLoggedIn">
-          <a routerLink="profile" class="nav-link"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+          <a routerLink="user-detail" class="nav-link"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
+        <li class="nav-item" *ngIf="!isLoggedIn">
           <a routerLink="profile" class="nav-link"><i class="fa fa-user-plus" aria-hidden="true"></i> Profile</a>
         </li>
       </ul>

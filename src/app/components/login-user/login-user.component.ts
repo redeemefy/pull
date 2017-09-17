@@ -16,12 +16,11 @@ export class LoginUserComponent implements OnInit {
 
   ngOnInit() {
     this._authService.getAuthUser().subscribe(auth => {
-      if(auth){
-        this._authService.getAuthUser
+      if (auth) {
         this.isLoggedIn = true;
       } else {
         this.isLoggedIn = false;
-        this._router.navigate(['/login'])
+        this._router.navigate(['/login']);
       }
     });
   }
@@ -30,6 +29,10 @@ export class LoginUserComponent implements OnInit {
     this._authService
       .login(this.email, this.password)
       .then(response => {
+        this._authService.getAuthUser().subscribe(auth => {
+          console.log('LoggeIn: ', auth.uid);
+          localStorage.setItem('currentUser', JSON.stringify(auth.uid));
+        });
         this._router.navigate(['/']);
       })
       .catch(error => {

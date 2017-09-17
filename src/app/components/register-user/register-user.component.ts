@@ -12,6 +12,7 @@ import { User } from '../../models/User';
 export class RegisterUserComponent implements OnInit {
   email: string;
   password: string;
+  uglyId: string;
   user: User = {};
 
   constructor(private _router: Router, private _authService: AuthService, private _userService: UserService) {}
@@ -25,7 +26,12 @@ export class RegisterUserComponent implements OnInit {
         this._authService.getAuthUser().subscribe(auth => {
           this.user.authKey = auth.uid;
           this.user.email = auth.email;
-          this._userService.createUserProfileOnRegister(this.user);
+          this._userService.addUserProfile(this.user).then(user => {
+            this.uglyId = user.path.pieces_[1];
+            localStorage.setItem('currentUser', JSON.stringify(auth.uid));
+            this.user.uid = this.uglyId;
+            this._userService.updateUserProfile(this.uglyId, this.user);
+          });
         });
         this._router.navigate(['/user-detail']);
       })
