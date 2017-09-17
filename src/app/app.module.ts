@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 
 // Custom Components Imports
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { EventsFeedComponent } from './components/events-feed/events-feed.component';
 import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { LoginUserComponent } from './components/login-user/login-user.component';
@@ -31,6 +32,7 @@ import { UserService } from './services/user.service';
 import { AuthGuard } from './guard/auth.guard';
 
 const appRoutes: Routes = [
+  { path: 'user-detail', component: UserDetailComponent, canActivate: [AuthGuard] },
   { path: 'edit-event', component: EditEventComponent, canActivate: [AuthGuard] },
   { path: 'edit-user', component: EditUserComponent, canActivate: [AuthGuard] },
   { path: 'add-event', component: AddEventComponent, canActivate: [AuthGuard] },
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     EditUserComponent,
     ProfileComponent,
     NavbarComponent,
-    AppComponent
+    AppComponent,
+    UserDetailComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

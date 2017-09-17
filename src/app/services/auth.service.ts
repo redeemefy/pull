@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +13,6 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this._afAuth.auth.createUserWithEmailAndPassword(email, password).then(
         userData => {
-          console.log('User Data: ', userData);
           resolve(userData);
         },
         error => {
@@ -37,5 +37,4 @@ export class AuthService {
   getAuthUser() {
     return this._afAuth.authState.map(auth => auth);
   }
-
 }

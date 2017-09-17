@@ -16,7 +16,6 @@ export class AddEventComponent implements OnInit {
   ngOnInit() {}
 
   submitNewEvent({value, valid}: {value: Event; valid: boolean}) {
-    console.log('New event: ', value);
     this._eventService.addEvent(value);
     this._router.navigate(['/']);
   }

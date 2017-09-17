@@ -10,10 +10,21 @@ import { Router } from '@angular/router';
 export class LoginUserComponent implements OnInit {
   email: string;
   password: string;
+  isLoggedIn: boolean;
 
   constructor(private _router: Router, private _authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._authService.getAuthUser().subscribe(auth => {
+      if(auth){
+        this._authService.getAuthUser
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+        this._router.navigate(['/login'])
+      }
+    });
+  }
 
   submintLogin() {
     this._authService
