@@ -2,6 +2,39 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.1.
 
+> Pull still under development. Feedback is welcome!!!
+
+The application is a capstone project for Nashville Software School. The main intention of the application is to gather resource, voluteers, and hosts in one place. 
+
+- People can create a ticket for an event.
+- People can comment on the ticket and create an thread.
+- People can request to volunteer (rejected by default).
+- Host can accept people to volunteer.
+
+## To run "Pull"
+
+- Clone the repo.
+- `src/app/` create a folder `environments`.
+- Inside `environments` create file `environment.ts`.
+- Add the following content to the file...
+
+```
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: 'Firebase apiKey',
+    authDomain: 'your-firebase-domain.com',
+    databaseURL: 'https://your-firebase-domain.com',
+    projectId: 'your-firebase-domain',
+    storageBucket: 'your-firebase-domain.com',
+    messagingSenderId: '098374578963647892'
+  }
+};
+```
+
+- `cd` to the root of the app.
+- run `ng serve`.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
