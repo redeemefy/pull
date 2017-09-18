@@ -1,3 +1,22 @@
-<p>
-  edit-user works!
-</p>
+<div class="row justify-content-center">
+    <div class="col-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-center">Edit Profile</h2><hr>
+            <form novalidate #f="ngForm" (ngSubmit)="submitEditProfile(f)">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" [(ngModel)]="user.fullName" name="fullName" aria-describedby="fullNameHelp" required>
+                <small id="fullNameHelp" class="form-text text-muted">It will appeared in your posts the way you type it here.</small>
+              </div>
+              <div class="form-group">
+                <label for="aboutMe">Short Bio</label>
+                <textarea type="password" class="form-control" [(ngModel)]="user.aboutMe" aria-describedby="aboutMeHelp" name="aboutMe"></textarea>
+                <small id="aboutMeHelp" class="form-text text-muted">It will show underneath your profile picture.</small>
+              </div>
+              <input type="submit" class="btn btn-primary btn-block" value="submit">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -19,4 +19,17 @@ export class EventService {
     // add event code
     this.events.push(event);
   }
+
+  getEventsByUid(id) {
+    return this._af.list('events', {
+      query: {
+        orderByChild: 'hostId',
+        equalTo: id
+      }
+    });
+  }
+
+  UpdateEvents(id, event){
+    return this.events.update(id,event);
+  }
 }

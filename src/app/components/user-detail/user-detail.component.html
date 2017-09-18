@@ -4,15 +4,26 @@
     <h2 class="text-center" *ngIf=user.fullName>{{user.fullName}}</h2>
     <hr>
     <div>
+      <h6 class="d-inline">Name:</h6>
+      <p class="text-muted d-inline">{{user.fullName}}</p>
+    </div>
+    <div>
       <h6 class="d-inline">Email:</h6>
       <p class="text-muted d-inline">{{user.email}}</p>
     </div>
+    <div>
+      <h6 class="d-inline">About me:</h6>
+      <p class="text-muted d-inline">{{user.aboutMe}}</p>
+    </div>
     <hr>
-    <button class="btn btn-default btn-block" routerLink="/edit-user">Edit Profile</button>
+    <div class="btn-group special" role="group" data-toggle="buttons">
+      <button class="btn btn-primary" routerLink="/edit-user">Edit Profile</button>
+      <button class="btn btn-danger">Delete Account</button>
+    </div>
   </div>
   <div class="col-6">
-      <h2 class="text-center">Activity</h2>
-      <hr>
+    <h2 class="text-center">Activity</h2>
+    <hr>
 
   </div>
 </div>

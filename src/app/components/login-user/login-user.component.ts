@@ -52,7 +52,7 @@ export class LoginUserComponent implements OnInit {
           this._userService.getUserByAuthKey(id).subscribe(currentUser => {
             localStorage.setItem('currentUser', JSON.stringify(currentUser[0].uid));
           });
-          this._toastr.success(`Logged in successfully!`);
+          this._toastr.success(`You are logged in!`);
           this._router.navigate(['/']);
         });
       })

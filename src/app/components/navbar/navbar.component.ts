@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
 
   submitLogout() {
     this._authService.logout();
-    this._toastr.success('You successfully logged out!');
+    this._toastr.success(`You have successfully logged out!`);
     localStorage.removeItem('currentUser');
     this._router.navigate(['/login']);
   }

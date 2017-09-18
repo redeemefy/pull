@@ -7,6 +7,7 @@ import 'rxjs/add/operator/switchMap';
 export class AuthService {
   email: string;
   password: string;
+
   constructor(private _afAuth: AngularFireAuth) { }
 
   register(email, password) {
@@ -34,7 +35,7 @@ export class AuthService {
     this._afAuth.auth.signOut();
   }
 
-  getAuthUser() {
+  getAuthUser(): Observable<any> {
     return this._afAuth.authState.map(auth => auth);
   }
 }
