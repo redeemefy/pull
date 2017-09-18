@@ -23,6 +23,12 @@ export class EditUserComponent implements OnInit {
     private _eventService: EventService
   ) {}
 
+  /**
+   * On load fetches user's ugly_id from local storage and user's events.
+   *
+   *
+   * @memberOf EditUserComponent
+   */
   ngOnInit() {
     this.id = JSON.parse(localStorage.getItem('currentUser'));
     this._userService.getUserProfile(this.id).subscribe(currentUser => {
@@ -34,6 +40,13 @@ export class EditUserComponent implements OnInit {
     });
   }
 
+  /**
+   * Updates user profile and user events on submitEditProfile().
+   *
+   * @param {{ value: User; valid: boolean }} { value, valid }
+   *
+   * @memberOf EditUserComponent
+   */
   submitEditProfile({ value, valid }: { value: User; valid: boolean }) {
     if (valid) {
       this._userService.updateUserProfile(this.id, value);

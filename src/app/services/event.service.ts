@@ -12,14 +12,36 @@ export class EventService {
     this.events = this._af.list('/events');
   }
 
+  /**
+   * Fetches all the events of all users.
+   *
+   * @returns {array} : all users events
+   *
+   * @memberOf EventService
+   */
   getEvents() {
     return this.events;
   }
+
+  /**
+   * Adds a new event.
+   *
+   * @param {Event interface} event :  single event
+   *
+   * @memberOf EventService
+   */
   addEvent(event) {
-    // add event code
     this.events.push(event);
   }
 
+  /**
+   * Fetches a single event by id.
+   *
+   * @param {string} id : event's id
+   * @returns {array} : array with a single event
+   *
+   * @memberOf EventService
+   */
   getEventsByUid(id) {
     return this._af.list('events', {
       query: {
@@ -29,6 +51,15 @@ export class EventService {
     });
   }
 
+  /**
+   * Updates each user's event.
+   *
+   * @param {string} id : event's id
+   * @param {Event interface} event : current event
+   * @returns {Promise} event : updated event
+   *
+   * @memberOf EventService
+   */
   UpdateEvents(id, event){
     return this.events.update(id,event);
   }
