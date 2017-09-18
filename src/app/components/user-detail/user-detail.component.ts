@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { EventService } from '../../services/event.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
-import { EventService } from '../../services/event.service';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
@@ -13,15 +13,16 @@ import { User } from '../../models/User';
 export class UserDetailComponent implements OnInit {
   user: User = {};
 
-  constructor(private _userService: UserService, private _authService: AuthService) {}
+  constructor(private _userService: UserService, private _authService: AuthService, private _router: Router) {}
 
   ngOnInit() {
     setTimeout(() => {
-      let id = JSON.parse(localStorage.getItem('currentUser'));
-      console.log('User Id from user detail: ', id);
-      this._userService.getUserByAuthKey(id).subscribe(user => {
-        this.user = user[0];
-      });
-    }, 1000);
+      if (JSON.parse(localStorage.getItem('currentUser'))) {
+        let id = JSON.parse(localStorage.getItem('currentUser'));
+        this._userService.getUserProfile(id).subscribe(user => {
+          this.user = user[0];
+        });
+      }
+    }, 200);
   }
 }

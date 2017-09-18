@@ -1,5 +1,7 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
@@ -45,6 +47,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     RegisterUserComponent,
+    UserDetailComponent,
     EventsFeedComponent,
     LoginUserComponent,
     EditEventComponent,
@@ -52,12 +55,13 @@ const appRoutes: Routes = [
     EditUserComponent,
     ProfileComponent,
     NavbarComponent,
-    AppComponent,
-    UserDetailComponent
+    AppComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    ToastModule.forRoot(),
     BrowserModule,
     FormsModule
   ],

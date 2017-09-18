@@ -1,11 +1,18 @@
 <div class="row">
   <div class="col-6">
-    <h2>Profile Details</h2>
+    <h2 class="text-center" *ngIf=!user.fullName>Profile Details</h2>
+    <h2 class="text-center" *ngIf=user.fullName>{{user.fullName}}</h2>
     <hr>
-    {{user.email}}
+    <div>
+      <h6 class="d-inline">Email:</h6>
+      <p class="text-muted d-inline">{{user.email}}</p>
+    </div>
+    <hr>
+    <button class="btn btn-default btn-block" routerLink="/edit-user">Edit Profile</button>
   </div>
-  <h2>Activity</h2>
   <div class="col-6">
+      <h2 class="text-center">Activity</h2>
+      <hr>
 
   </div>
 </div>

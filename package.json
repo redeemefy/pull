@@ -25,11 +25,13 @@
     "@types/firebase": "^2.4.32",
     "@types/jquery": "^3.2.12",
     "@types/popper.js": "^1.10.0",
+    "angular2-flash-messages": "^1.0.8",
     "angularfire2": "^4.0.0-rc.2",
     "bootstrap": "4.0.0-beta",
     "core-js": "^2.4.1",
     "firebase": "^4.3.1",
     "jquery": "^3.2.1",
+    "ng2-toastr": "^4.1.2",
     "popper.js": "^1.12.5",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"

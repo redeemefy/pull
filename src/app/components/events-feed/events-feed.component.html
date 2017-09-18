@@ -13,7 +13,8 @@
         <div class="card-text">
           <small class="text-muted d-block"> Hosted by...</small>
           <img src="../../../assets/images/avatar/chris.jpg" alt="" class="rounded-circle mr-2" style="height: 50px">
-          <p class="d-inline">{{event.host_name}}</p>
+          <p class="d-inline" *ngIf=event.hostName>{{event.hostName}}</p>
+          <p class="d-inline" *ngIf=!event.hostName>{{event.hostEmail}}</p>
           <br><br>
           <!-- <div>
             <p class="font-weight-bold d-inline">Date: </p>

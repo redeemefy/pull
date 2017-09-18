@@ -7,7 +7,7 @@ import 'rxjs/add/operator/switchMap';
 export class AuthService {
   email: string;
   password: string;
-  constructor(private _afAuth: AngularFireAuth) {}
+  constructor(private _afAuth: AngularFireAuth) { }
 
   register(email, password) {
     return new Promise((resolve, reject) => {

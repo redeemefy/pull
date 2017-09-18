@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Component, OnInit } from '@angular/core';
 import { FirebaseApp } from 'angularfire2';
 import { User } from '../../models/User';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
-import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -16,12 +17,14 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean;
   authKey: string;
   user: User = {};
+
   constructor(
     private _authService: AuthService,
     private _userService: UserService,
+    private _afAuth: AngularFireAuth,
+    private _toastr: ToastsManager,
     private _fbApp: FirebaseApp,
-    private _router: Router,
-    private _afAuth: AngularFireAuth
+    private _router: Router
   ) {}
 
   ngOnInit() {
@@ -30,14 +33,14 @@ export class NavbarComponent implements OnInit {
         this.isLoggedIn = true;
       } else {
         this.isLoggedIn = false;
-        this._router.navigate(['/login']);
       }
     });
   }
 
   submitLogout() {
     this._authService.logout();
-    localStorage.clear();
+    this._toastr.success('You successfully logged out!');
+    localStorage.removeItem('currentUser');
     this._router.navigate(['/login']);
   }
 }

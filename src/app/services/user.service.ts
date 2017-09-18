@@ -7,8 +7,6 @@ import { User } from '../models/User';
 export class UserService {
   users: FirebaseListObservable<any[]>;
   user: FirebaseObjectObservable<any>;
-  // userKey: string;
-  id: string;
 
   constructor(private _af: AngularFireDatabase) {
     this.users = this._af.list('/users') as FirebaseListObservable<User[]>;
@@ -24,17 +22,16 @@ export class UserService {
         orderByChild: 'authKey',
         equalTo: id
       }
-    })
+    });
   }
 
   getUserProfile(id) {
-    this.user = this._af.object(`/users/${id}`) as FirebaseObjectObservable<User>;
-    return this.user;
-  }
-
-  getUserId(id) {
-    this.user = this._af.object('/users' + id) as FirebaseObjectObservable<User>;
-    return this.user;
+    return this._af.list('users', {
+      query: {
+        orderByChild: 'uid',
+        equalTo: id
+      }
+    });
   }
 
   updateUserProfile(id, user) {

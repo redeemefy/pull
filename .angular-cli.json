@@ -5,32 +5,31 @@
   },
   "apps": [
     {
-      "root": "src",
-      "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "testTsconfig": "tsconfig.spec.json",
+      "assets": ["assets", "favicon.ico"],
+      "tsconfig": "tsconfig.app.json",
+      "polyfills": "polyfills.ts",
       "index": "index.html",
       "main": "main.ts",
-      "polyfills": "polyfills.ts",
       "test": "test.ts",
-      "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "tsconfig.spec.json",
+      "outDir": "dist",
       "prefix": "app",
+      "root": "src",
       "styles": [
         "styles.css",
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "../node_modules/popper.js/dist/umd/popper.min.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+        "../node_modules/jquery/dist/jquery.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
+        "prod": "environments/environment.prod.ts",
+        "dev": "environments/environment.ts"
       }
     }
   ],
