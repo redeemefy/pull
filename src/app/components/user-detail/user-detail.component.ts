@@ -1,9 +1,10 @@
 import { EventService } from '../../services/event.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/User';
 import { Event } from '../../models/Event';
+import { User } from '../../models/User';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,7 +17,13 @@ export class UserDetailComponent implements OnInit {
   events: Event[];
   id: string;
 
-  constructor(private _userService: UserService, private _eventService: EventService, private _authService: AuthService, private _router: Router) {}
+  constructor(
+    private _eventService: EventService,
+    private _userService: UserService,
+    private _authService: AuthService,
+    private _toastr: ToastsManager,
+    private _router: Router
+  ) {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -28,7 +35,20 @@ export class UserDetailComponent implements OnInit {
       }
       this._eventService.getEventsByUid(this.id).subscribe(userEvents => {
         this.events = userEvents;
-      })
+      });
     }, 200);
+  }
+
+  deleteEvent(id) {
+    this._eventService
+      .deleteEvent(id)
+      .then(event => {
+        if (event === undefined) {
+          this._toastr.success('Event successfully deleted!');
+        }
+      })
+      .catch(error => {
+        this._toastr.error(error.message);
+      });
   }
 }

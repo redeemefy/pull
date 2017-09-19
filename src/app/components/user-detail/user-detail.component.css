@@ -5,3 +5,13 @@
 .special .btn {
   flex: 1
 }
+
+.fa:hover {
+  cursor: pointer;
+  color: #6F6F6F;
+  transition: all 0.25s ease-in-out;
+}
+
+.fa-size {
+  font-size: 1.1em;
+}

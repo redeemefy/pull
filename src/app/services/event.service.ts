@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { Event } from '../models/Event';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class EventService {
@@ -32,6 +32,10 @@ export class EventService {
    */
   addEvent(event) {
     this.events.push(event);
+  }
+
+  deleteEvent(id) {
+    return this.events.remove(id);
   }
 
   /**
