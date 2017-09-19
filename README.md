@@ -16,7 +16,8 @@ The application is a capstone project for Nashville Software School. The main in
 - Clone the repo.
 - `src/app/` create a folder `environments`.
 - Inside `environments` create file `environment.ts`.
-- Add the following content to the file...
+- Go to [www.firebase.com](www.firebase.com) and create a new project.
+- Copy the database credentials to the file you just created...
 
 ```
 export const environment = {
@@ -32,7 +33,8 @@ export const environment = {
 };
 ```
 
-- `cd` to the root of the app.
+- `cd` to the root of the app `path-to-the-project/pull`.
+- run `npm install`.
 - run `ng serve`.
 
 ## Development server

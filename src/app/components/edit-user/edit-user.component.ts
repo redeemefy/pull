@@ -54,6 +54,7 @@ export class EditUserComponent implements OnInit {
         event.hostName = value.fullName;
         this._eventService.UpdateEvents(event.$key, event);
       });
+      this._toastr.success('Profile & events successfully updated!!!');
       this._router.navigate(['/user-detail']);
     }
   }

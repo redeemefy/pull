@@ -28,7 +28,6 @@ export class UserDetailComponent implements OnInit {
       }
       this._eventService.getEventsByUid(this.id).subscribe(userEvents => {
         this.events = userEvents;
-        console.log(this.events)
       })
     }, 200);
   }
