@@ -1,4 +1,4 @@
-<div class="row justify-content-center" *ngFor="let event of events">
+<div class="row justify-content-center" *ngFor="let event of events | orderBy: 'dateCreated': 'desc'">
   <div class="col-6">
     <div class="card">
       <div class="card-body">
@@ -16,17 +16,9 @@
           <p class="d-inline" *ngIf=event.hostName>{{event.hostName}}</p>
           <p class="d-inline" *ngIf=!event.hostName>{{event.hostEmail}}</p>
           <br><br>
-          <!-- <div>
-            <p class="font-weight-bold d-inline">Date: </p>
-            <p class="d-inline text-muted">{{event.date | date}}</p>
-            <p class="font-weight-bold d-inline">Start Time: </p>
-            <p class="d-inline text-muted">{{event.start_time}}</p>
-            <p class="font-weight-bold d-inline">End Time: </p>
-            <p class="d-inline text-muted">{{event.end_time}}</p>
-
-          </div> -->
           <div class="row">
             <div class="col-4">
+              <p hidden>{{event.dateCreated}}</p>
               <h5 class="text-muted font-italic">Date</h5>
             </div>
             <div class="col-4">

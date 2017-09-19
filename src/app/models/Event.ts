@@ -1,5 +1,6 @@
 export interface Event {
   streetAddress?: string;
+  dateCreated?: any;
   applicants?: object;
   hostEmail?: string;
   eventName?: string;

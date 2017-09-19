@@ -1,11 +1,12 @@
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { EventService } from '../../services/event.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Component, OnInit } from '@angular/core';
 import { Event } from '../../models/Event';
 import { User } from '../../models/User';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-detail',

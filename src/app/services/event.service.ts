@@ -1,7 +1,9 @@
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Event } from '../models/Event';
+import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
+import * as _ from 'lodash';
 
 @Injectable()
 export class EventService {
@@ -64,7 +66,18 @@ export class EventService {
    *
    * @memberOf EventService
    */
-  UpdateEvents(id, event){
-    return this.events.update(id,event);
+  UpdateEvents(id, event) {
+    return this.events.update(id, event);
+  }
+
+  /**
+   * Generates a timestamp once the object gets pushed to Firebase.
+   *
+   * @returns {object} : Firebase timestamp
+   *
+   * @memberOf EventService
+   */
+  firebaseTimestamp() {
+    return _.get(firebase, 'database.ServerValue.TIMESTAMP');
   }
 }

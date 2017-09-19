@@ -1,8 +1,17 @@
 import { EventService } from '../../services/event.service';
 import { UserService } from '../../services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { Event } from '../../models/Event';
 import { User } from '../../models/User';
+import { orderBy } from 'lodash';
+
+@Pipe({
+  name: 'orderBy'
+})
+
+export class OrderByDate implements PipeTransform {
+  transform = orderBy;
+}
 
 @Component({
   selector: 'app-events-feed',

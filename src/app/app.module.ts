@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe, PipeTransform } from '@angular/core';
 
 // AngularFire Imports
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -14,9 +14,9 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 
 // Custom Components Imports
+import { EventsFeedComponent, OrderByDate } from './components/events-feed/events-feed.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
-import { EventsFeedComponent } from './components/events-feed/events-feed.component';
 import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { AddEventComponent } from './components/add-event/add-event.component';
@@ -55,7 +55,8 @@ const appRoutes: Routes = [
     EditUserComponent,
     ProfileComponent,
     NavbarComponent,
-    AppComponent
+    AppComponent,
+    OrderByDate
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
