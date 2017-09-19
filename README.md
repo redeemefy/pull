@@ -16,7 +16,7 @@ The application is a capstone project for Nashville Software School. The main in
 - Clone the repo.
 - `src/app/` create a folder `environments`.
 - Inside `environments` create file `environment.ts`.
-- Go to [firebase](www.firebase.com) and create a new project.
+- Go to [firebase](http://www.firebase.com) and create a new project.
 - Copy the database credentials to the file you just created...
 
 ```
