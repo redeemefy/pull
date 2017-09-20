@@ -1,4 +1,5 @@
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { Comment } from '../models/Comment';
 import { Injectable } from '@angular/core';
 import { Event } from '../models/Event';
 import * as firebase from 'firebase';
@@ -7,6 +8,7 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class EventService {
+  comments: FirebaseListObservable<Comment[]>;
   events: FirebaseListObservable<Event[]>;
   event: FirebaseObjectObservable<Event>;
 
@@ -23,6 +25,10 @@ export class EventService {
    */
   getEvents() {
     return this.events;
+  }
+
+  getSingleEvent(id) {
+    return this._af.object('/events/' + id) as FirebaseObjectObservable<Event>;
   }
 
   /**
@@ -66,7 +72,7 @@ export class EventService {
    *
    * @memberOf EventService
    */
-  UpdateEvents(id, event) {
+  updateEvents(id, event) {
     return this.events.update(id, event);
   }
 
@@ -79,5 +85,28 @@ export class EventService {
    */
   firebaseTimestamp() {
     return _.get(firebase, 'database.ServerValue.TIMESTAMP');
+  }
+
+  /**
+   * Add new user comment to Firebase at events/comments node.
+   *
+   * @param {object: Comment} comment
+   * @returns {object: Comment} : the new comment added
+   *
+   * @memberOf EventService
+   */
+  addNewCommentToEvent (id, comment) {
+    return this._af.database.ref(`/events/${id}`).child('/comments').push(comment)
+  }
+
+  getAllEventComments() {
+
+  }
+
+  getIdFromLocalStorage() {
+    return new Promise((resolve, reject) => {
+      let id = JSON.parse(localStorage.getItem('currentUser'))
+      return id ? resolve(id) : reject(error => error);
+    })
   }
 }

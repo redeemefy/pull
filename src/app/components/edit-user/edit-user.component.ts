@@ -52,7 +52,7 @@ export class EditUserComponent implements OnInit {
       this._userService.updateUserProfile(this.id, value);
       this.currentUserEvents.forEach(event => {
         event.hostName = value.fullName;
-        this._eventService.UpdateEvents(event.$key, event);
+        this._eventService.updateEvents(event.$key, event);
       });
       this._toastr.success('Profile & events successfully updated!!!');
       this._router.navigate(['/user-detail']);

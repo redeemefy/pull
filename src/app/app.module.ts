@@ -35,7 +35,7 @@ import { AuthGuard } from './guard/auth.guard';
 
 const appRoutes: Routes = [
   { path: 'user-detail', component: UserDetailComponent, canActivate: [AuthGuard] },
-  { path: 'edit-event', component: EditEventComponent, canActivate: [AuthGuard] },
+  { path: 'edit-event/:id', component: EditEventComponent, canActivate: [AuthGuard] },
   { path: 'edit-user', component: EditUserComponent, canActivate: [AuthGuard] },
   { path: 'add-event', component: AddEventComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },

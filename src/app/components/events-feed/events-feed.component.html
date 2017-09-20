@@ -1,60 +1,113 @@
-<div class="row justify-content-center" *ngFor="let event of events | orderBy: 'dateCreated': 'desc'">
-  <div class="col-6">
-    <div class="card">
-      <div class="card-body">
-        <div class="card-title">
-          <div>
-            <small class="text-muted d-block">Volunteer for...</small> <h4>{{event.event_name}}</h4>
-          </div>
-          <!-- <img src={{event.host_img}} alt="" class="rounded-circle mr-2">
-          <h5 class="d-inline">{{event.host_name}}</h5> -->
+<div class="row">
+  <div class="col-3">
+    <div class="row">
+      <div class="card">
+        <img class="card-img-top profile-pic" src="../../../assets/images/avatar/joe.jpg" alt="Card image cap">
+        <div class="card-body text-center">
+          <h3>{{user.fullName}}</h3>
+          <p class="card-text">{{user.aboutMe}}</p>
         </div>
-        <hr>
-        <div class="card-text">
-          <small class="text-muted d-block"> Hosted by...</small>
-          <img src="../../../assets/images/avatar/chris.jpg" alt="" class="rounded-circle mr-2" style="height: 50px">
-          <p class="d-inline" *ngIf=event.hostName>{{event.hostName}}</p>
-          <p class="d-inline" *ngIf=!event.hostName>{{event.hostEmail}}</p>
-          <br><br>
-          <div class="row">
-            <div class="col-4">
-              <p hidden>{{event.dateCreated}}</p>
-              <h5 class="text-muted font-italic">Date</h5>
-            </div>
-            <div class="col-4">
-              <h5 class="text-muted font-italic">Start Time</h5>
-            </div>
-            <div class="col-4">
-              <h5 class="text-muted font-italic">End Time</h5>
-            </div>
-            <div class="col-4">
-              <p>{{event.date | date}}</p>
-            </div>
-            <div class="col-4">
-              <p>{{event.start_time}}</p>
-            </div>
-            <div class="col-4">
-              <p>{{event.end_time}}</p>
-            </div>
-          </div><hr class="mt-0">
-          <div>
-            <h5 class="text-muted">What is about</h5>
-            <p>{{event.description}}</p>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <h5 class="text-muted">Location</h5>
-              <p class="mb-0">{{event.street_address}}</p>
-              <p>{{event.city}} {{event.state}}, {{event.zipcode}}</p>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <i class="fa fa-comments d-inline-flex mr-2 event-card-icon" aria-hidden="true"></i>
-        <i class="fa fa-handshake-o d-inline-flex mr-2 event-card-icon" aria-hidden="true"></i>
-
       </div>
     </div>
-    <br>
+  </div>
+  <div class="col-6">
+    <div class="row" *ngFor="let event of events | orderBy: 'dateCreated': 'desc'">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <div>
+                <small class="text-muted d-block">Volunteer for...</small>
+                <h4>{{event.event_name}}</h4>
+              </div>
+            </div>
+            <hr>
+            <div class="card-text">
+              <small class="text-muted d-block"> Hosted by...</small>
+              <img src="../../../assets/images/avatar/chris.jpg" alt="" class="rounded-circle mr-2" style="height: 50px">
+              <p class="d-inline" *ngIf=event.hostName>{{event.hostName}}</p>
+              <p class="d-inline" *ngIf=!event.hostName>{{event.hostEmail}}</p>
+              <br><br>
+              <div class="row">
+                <div class="col-4">
+                  <p hidden>{{event.dateCreated}}</p>
+                  <h5 class="text-muted font-italic">Date</h5>
+                </div>
+                <div class="col-4">
+                  <h5 class="text-muted font-italic">Start Time</h5>
+                </div>
+                <div class="col-4">
+                  <h5 class="text-muted font-italic">End Time</h5>
+                </div>
+                <div class="col-4">
+                  <p>{{event.date | date}}</p>
+                </div>
+                <div class="col-4">
+                  <p>{{event.start_time}}</p>
+                </div>
+                <div class="col-4">
+                  <p>{{event.end_time}}</p>
+                </div>
+              </div>
+              <hr class="mt-0">
+              <div>
+                <h5 class="text-muted">What is about</h5>
+                <p>{{event.description}}</p>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <h5 class="text-muted">Location</h5>
+                  <p class="mb-0">{{event.street_address}}</p>
+                  <p>{{event.city}} {{event.state}}, {{event.zipcode}}</p>
+                  {{event.$key}}
+                </div>
+              </div>
+            </div>
+            <hr>
+            <a class="event-comment-collapse" data-toggle="collapse" href="#{{event.$key}}" aria-expanded="false" attr.aria-controls="{{event.$key}}">
+              <i class="fa fa-comments d-inline-flex mr-2 event-card-icon" aria-hidden="true" [ngClass]="{'event-comment-icon': event.hostId != user.uid}"></i>
+              </a>
+            <i class="fa fa-handshake-o d-inline-flex mr-2 event-card-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="collapse" [id]="event.$key">
+          <div class="card card-body">
+            <div class="input-group input-group-sm">
+              <form novalidate class="form-inline comment-input" #comment="ngForm" (ngSubmit)="onSubmitAddNewComment(comment)">
+                <input type="text" [(ngModel)]="event.$key" name="eventId" #eventId="ngModel" hidden>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="comment.message" name="message" #message="ngModel" placeholder="Add a comment..."
+                aria-label="Add a comment...">
+                <span class="input-group-btn">
+                  <input class="btn btn-primary btn-sm" type="submit" value="Submit">
+                </span>
+              </form>
+            </div>
+            <div class="card-body event-user-comment">
+              <div class="row">
+                <div class="col-1">
+                  <img src="../../../assets/images/avatar/chris.jpg" alt="" class="rounded-circle" style="height: 40px">
+                </div>
+                <div class="col">
+                  <h6 class="d-inline">{{user.fullName}} - </h6>
+                  <p class="user-comment text-muted d-inline">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
+                    keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-1">
+                  <img src="../../../assets/images/avatar/chris.jpg" alt="" class="rounded-circle" style="height: 40px">
+                </div>
+                <div class="col">
+                  <h6 class="d-inline">{{user.fullName}} - </h6>
+                  <p class="user-comment text-muted d-inline">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
+                    keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                </div>
+              </div><br>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
   </div>
 </div>

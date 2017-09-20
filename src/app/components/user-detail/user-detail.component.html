@@ -28,7 +28,7 @@
       <div class="list-group-item" *ngFor="let event of events">
           <a class="">{{event.event_name}}</a>
           <i class="fa fa-trash pull-right fa-size" aria-hidden="true" (click)="deleteEvent(event.$key)"></i>
-          <i class="fa fa-pencil pull-right fa-size mr-3" aria-hidden="true"></i>
+          <i class="fa fa-pencil pull-right fa-size mr-3" aria-hidden="true" [routerLink]="['/edit-event/']+event.$key"></i>
       </div>
     </div>
   </div>

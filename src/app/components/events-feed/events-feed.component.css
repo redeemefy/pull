@@ -2,3 +2,36 @@
   font-size: 1.25em;
 }
 
+.event-card-icon:hover {
+  cursor: pointer;
+  opacity: 0.75;
+  transition: all 0.25s  ease-in-out;
+}
+
+a.event-comment-collapse {
+  text-decoration: none;
+  color: #212529;
+}
+
+.event-comment-icon {
+  color: #22BF22
+}
+
+.profile-pic {
+  border: 0.25em solid #fff;
+}
+
+div.event-user-comment {
+  padding: 0.75rem;
+}
+
+p.user-comment {
+  font-size: smaller;
+}
+
+.comment-input {
+  width: 100%;
+}
+
+
+

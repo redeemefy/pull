@@ -25,6 +25,12 @@ export class RegisterUserComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   *
+   *
+   *
+   * @memberOf RegisterUserComponent
+   */
   registerUser() {
     this._authService
       .register(this.email, this.password)
