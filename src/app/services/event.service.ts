@@ -99,9 +99,9 @@ export class EventService {
     return this._af.database.ref(`/events/${id}`).child('/comments').push(comment)
   }
 
-  getAllEventComments() {
-
-  }
+  // getAllCommentsForSingleEvent(id) {
+  //   return this._af.object(`/events/${id}/comments`) as FirebaseObjectObservable<Comment>;
+  // }
 
   getIdFromLocalStorage() {
     return new Promise((resolve, reject) => {

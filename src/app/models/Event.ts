@@ -6,6 +6,7 @@ export interface Event {
   eventName?: string;
   eventDate?: string;
   startTime?: string;
+  comments?: any;
   hostName?: string;
   eventId?: string;
   zipcode?: string;

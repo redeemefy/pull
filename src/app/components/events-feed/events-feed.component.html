@@ -13,7 +13,7 @@
   <div class="col-6">
     <div class="row" *ngFor="let event of events | orderBy: 'dateCreated': 'desc'">
       <div class="col-12">
-        <div class="card">
+        <div class="card event-card">
           <div class="card-body">
             <div class="card-title">
               <div>
@@ -59,51 +59,43 @@
                   <h5 class="text-muted">Location</h5>
                   <p class="mb-0">{{event.street_address}}</p>
                   <p>{{event.city}} {{event.state}}, {{event.zipcode}}</p>
-                  {{event.$key}}
                 </div>
               </div>
             </div>
             <hr>
             <a class="event-comment-collapse" data-toggle="collapse" href="#{{event.$key}}" aria-expanded="false" attr.aria-controls="{{event.$key}}">
-              <i class="fa fa-comments d-inline-flex mr-2 event-card-icon" aria-hidden="true" [ngClass]="{'event-comment-icon': event.hostId != user.uid}"></i>
+              <i class="fa fa-comments d-inline-flex event-card-icon" aria-hidden="true" [ngClass]="{'event-comment-icon': event.hostId != user.uid}"></i>
+              <small class="text-muted mr-3">{{objectKeys(event.comments).length}} comments</small>
               </a>
             <i class="fa fa-handshake-o d-inline-flex mr-2 event-card-icon" aria-hidden="true"></i>
           </div>
         </div>
-        <div class="collapse" [id]="event.$key">
-          <div class="card card-body">
+        <div class="" [id]="event.$key">
+          <div class="card card-body comment-card">
+            <div *ngIf=event.comments>
+              <div class="card-body event-user-comment" *ngFor="let comment of objectKeys(event.comments) | orderBy: 'dateCreated': 'asc'">
+                <div class="row">
+                  <div class="col-1">
+                    <img src="../../../assets/images/avatar/chris.jpg" alt="" class="rounded-circle" style="height: 40px">
+                  </div>
+                  <div class="col">
+                    <h6 class="d-inline">{{event.comments[comment].fullName}} - </h6>
+                    <p class="user-comment text-muted d-inline">{{event.comments[comment].message}}</p>
+                  </div>
+                </div><br>
+              </div>
+            </div>
             <div class="input-group input-group-sm">
               <form novalidate class="form-inline comment-input" #comment="ngForm" (ngSubmit)="onSubmitAddNewComment(comment)">
                 <input type="text" [(ngModel)]="event.$key" name="eventId" #eventId="ngModel" hidden>
                 <input type="text" class="form-control form-control-sm" [(ngModel)]="comment.message" name="message" #message="ngModel" placeholder="Add a comment..."
-                aria-label="Add a comment...">
+                  aria-label="Add a comment...">
                 <span class="input-group-btn">
-                  <input class="btn btn-primary btn-sm" type="submit" value="Submit">
-                </span>
+                    <input class="btn btn-primary btn-sm" type="submit" value="Submit">
+                  </span>
               </form>
             </div>
-            <div class="card-body event-user-comment">
-              <div class="row">
-                <div class="col-1">
-                  <img src="../../../assets/images/avatar/chris.jpg" alt="" class="rounded-circle" style="height: 40px">
-                </div>
-                <div class="col">
-                  <h6 class="d-inline">{{user.fullName}} - </h6>
-                  <p class="user-comment text-muted d-inline">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                    keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
-                </div>
-              </div><br>
-              <div class="row">
-                <div class="col-1">
-                  <img src="../../../assets/images/avatar/chris.jpg" alt="" class="rounded-circle" style="height: 40px">
-                </div>
-                <div class="col">
-                  <h6 class="d-inline">{{user.fullName}} - </h6>
-                  <p class="user-comment text-muted d-inline">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                    keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
-                </div>
-              </div><br>
-            </div>
+
           </div>
         </div>
         <br>

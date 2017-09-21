@@ -1,3 +1,8 @@
+.event-card {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 .event-card-icon {
   font-size: 1.25em;
 }
@@ -31,6 +36,12 @@ p.user-comment {
 
 .comment-input {
   width: 100%;
+}
+
+.comment-card {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #f3f3f3;
 }
 
 
