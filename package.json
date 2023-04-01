@@ -31,7 +31,7 @@
     "bootstrap": "4.0.0-beta",
     "core-js": "^2.4.1",
     "firebase": "^9.15.0",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.21",
     "ng2-toastr": "^4.1.2",
     "popper.js": "^1.12.5",
